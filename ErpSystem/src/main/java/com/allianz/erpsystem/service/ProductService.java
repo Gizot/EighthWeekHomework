@@ -16,7 +16,7 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
-    //prodcuctEntity requested By requestController in controller
+    //product requested By requestController in controller
     public Product createProduct(Product product) {
         productRepository.save(product);
         return product;
