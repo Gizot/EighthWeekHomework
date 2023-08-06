@@ -17,6 +17,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     Product findAllByNameIgnoreCase(String name);
 
     void  deleteProductByUuid(UUID uuid);
-    //null ise false nul değilse true döner
     Optional<Product> findByUuid(UUID uuid);
 }

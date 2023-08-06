@@ -10,8 +10,5 @@ import java.util.UUID;
 
 @Repository
 public interface BillRepository extends JpaRepository <Bill, Long> {
-    @Modifying
-    void deleteByUuid(UUID uuid);
 
-    Optional<Bill> findByUuid(UUID uuid);
 }

@@ -14,17 +14,23 @@ import java.util.List;
 @Data
 public class Order extends BaseEntity {
 
+    @Column
+    private OrderState orderStatusEnum;
+
+    //orderlist in CustomerEntity
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrderObj> orderObjList = new ArrayList<>();
+    //orderlist in ProductEntity
+    @ManyToMany
+    @JoinTable(
+            name = "order_product",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private List<Product> productList;
 
-    boolean orderStatus;
-
-    @OneToOne
-    @JoinColumn(name = "invoice_id")
-    private Bill bill;
-
+    public void setOrderState(OrderState standBy) {
+    }
 }

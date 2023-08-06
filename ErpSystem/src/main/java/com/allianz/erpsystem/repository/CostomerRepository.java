@@ -12,12 +12,11 @@ import java.util.UUID;
 @Repository
 public interface CostomerRepository extends JpaRepository<Customer, Long > {
 
-    @Modifying
-    void deleteByUuid(UUID uuid);
+    List<Customer> findAll();
+
+    Customer findAllByNameIgnoreCase(String name);
+
+    void deleteCustomerEntitiesByUuid(UUID uuid);
 
     Optional<Customer> findByUuid(UUID uuid);
-
-    List<Customer> findAllByNameStartingWith(String key);
-
-    List<Customer> findAllByNameStartingWithOrSurnameStartingWith(String name, String surname);
 }

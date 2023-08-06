@@ -16,13 +16,11 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
-    //product requested By requestController in controller
     public Product createProduct(Product product) {
         productRepository.save(product);
         return product;
     }
 
-    //finds all products in database
     public List<Product> getProductList() {
         return productRepository.findAll();
     }
@@ -31,7 +29,6 @@ public class ProductService {
         return productRepository.findAllByNameIgnoreCase(name);
     }
 
-    //will be used for delete
     public Product getProductByUUID(UUID uuid) {
         Optional<Product> productEntityOptional = productRepository.findByUuid(uuid);
 
