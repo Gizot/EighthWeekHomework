@@ -16,55 +16,45 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
-    //in order to list all customers.
+    // Müşterilerin tamamını listelemek için HTTP GET isteği işleme metodu.
     @GetMapping("customer")
     public ResponseEntity<List<Customer>> getCustomerList() {
-
         return new ResponseEntity<>(customerService.getCustomerList(), HttpStatus.OK);
     }
 
-    //get customer oby name
+    // İsimle müşteri aramak için HTTP GET isteği işleme metodu.
     @GetMapping("customer/{name}")
     public ResponseEntity<Customer> getCustomer(@PathVariable String name) {
-
         return new ResponseEntity<>(customerService.getCustomerByName(name), HttpStatus.OK);
     }
 
-
-    //save customer to db.
+    // Yeni bir müşteri oluşturmak için HTTP POST isteği işleme metodu.
     @PostMapping("customer")
     public ResponseEntity<Customer> createCustomer(@RequestBody CustomerDto customerDto) throws Exception {
-
-        Customer customer1 = customerService.createCustomer(customerDto.getName(),customerDto.getSurname());
-
-
+        Customer customer1 = customerService.createCustomer(customerDto.getName(), customerDto.getSurname());
         return new ResponseEntity<>(customer1, HttpStatus.CREATED);
     }
 
+    // Müşteriyi UUID ile silmek için HTTP DELETE isteği işleme metodu.
     @DeleteMapping("customer/{uuid}")
     public ResponseEntity<Boolean> deleteCustomer(@PathVariable UUID uuid) {
-
         Boolean isDeleted = customerService.deleteCustomerByUUID(uuid);
-        if(isDeleted){
+        if (isDeleted) {
             return new ResponseEntity<>(Boolean.TRUE, HttpStatus.NOT_FOUND);
-
-        }else {
+        } else {
             return new ResponseEntity<>(Boolean.FALSE, HttpStatus.NOT_FOUND);
-
         }
     }
 
-    //update
+    // Müşteriyi UUID ile güncellemek için HTTP PUT isteği işleme metodu.
     @PutMapping("customer/{uuid}")
-    public ResponseEntity<Customer> updateCustomerByUUID(@PathVariable UUID uuid, @RequestBody Customer newCustomerEntity){
-
+    public ResponseEntity<Customer> updateCustomerByUUID(@PathVariable UUID uuid, @RequestBody Customer newCustomerEntity) {
         Customer customerEntity = customerService.updateCustomerByUUID(uuid, newCustomerEntity);
-        if(customerEntity!=null){
+        if (customerEntity != null) {
             return new ResponseEntity<>(customerEntity, HttpStatus.OK);
-        }else{
+        } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
-
 
 }

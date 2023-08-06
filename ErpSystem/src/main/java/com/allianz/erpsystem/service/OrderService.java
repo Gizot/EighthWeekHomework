@@ -25,7 +25,7 @@ public class OrderService {
     @Autowired
     CostomerRepository customerRepository;
 
-
+    // Yeni bir sipariş oluşturmak için kullanılan metod.
     public Order createOrder(Order newOrder, Long customer_id) {
         Customer customer = customerRepository.findById(customer_id).orElse(null);
         Order order = newOrder;
@@ -35,10 +35,11 @@ public class OrderService {
         customer.getOrderList().add(order);
         return order;
     }
-
+    // Sipariş listesini almak için kullanılan metod.
     public List<Order> getOrderList(){
         return orderRepository.findAll();
     }
+    // Siparişe ürün eklemek için kullanılan metod.
     public Order addProductToOrder(Long order_id,  Long product_id){
         List<Product> productList = null;
         Order order = orderRepository.findById(order_id).get();
@@ -57,7 +58,7 @@ public class OrderService {
         return orderRepository.save(order);
 
     }
-
+    // UUID ile sipariş aramak için kullanılan metod.
     public Order getOrderByUUID(UUID uuid){
         Optional<Order> orderEntityOptional = orderRepository.findByUuid(uuid);
 
@@ -67,7 +68,7 @@ public class OrderService {
             return null;
         }
     }
-
+    // UUID ile siparişi silmek için kullanılan metod.
     @Transactional
     public  Boolean deleteOrderByUUID(UUID uuid){
         Order orderEntity = getOrderByUUID(uuid);
@@ -79,6 +80,7 @@ public class OrderService {
             return  false;
         }
     }
+    // UUID ile siparişi güncellemek için kullanılan metod.
     public  Order updateOrderByUUID(UUID uuid, Order newOrderEntity, long customer_id, long product_id){
         Order orderEntity = getOrderByUUID(uuid);
         Customer customer = customerRepository.findById(customer_id).get();

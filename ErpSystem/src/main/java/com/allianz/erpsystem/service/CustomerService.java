@@ -18,7 +18,7 @@ public class CustomerService {
     @Autowired
     OrderRepository orderRepository;
 
-
+    // Yeni bir müşteri oluşturmak için kullanılan metod.
     public Customer createCustomer(String name, String surname) {
         Customer customer = new Customer();
         customer.setName(name);
@@ -27,15 +27,15 @@ public class CustomerService {
         customerRepository.save(customer);
         return customer;
     }
-
+    // Müşterilerin tamamını listelemek için kullanılan metod.
     public List<Customer> getCustomerList() {
         return customerRepository.findAll();
     }
-
+    // İsimle müşteri aramak için kullanılan metod.
     public Customer getCustomerByName(String name) {
         return customerRepository.findAllByNameIgnoreCase(name);
     }
-
+    // UUID ile müşteri aramak için kullanılan metod.
     public Customer getCustomerByUUID(UUID uuid) {
         Optional<Customer> customerEntityOptional = customerRepository.findByUuid(uuid);
 
@@ -45,7 +45,7 @@ public class CustomerService {
             return null;
         }
     }
-
+    // UUID ile müşteriyi silmek için kullanılan metod.
     @Transactional
     public Boolean deleteCustomerByUUID(UUID uuid) {
         Customer customerEntity = getCustomerByUUID(uuid);
@@ -57,6 +57,7 @@ public class CustomerService {
             return false;
         }
     }
+    // UUID ile müşteriyi güncellemek için kullanılan metod.
     public Customer updateCustomerByUUID(UUID uuid, Customer newCustomerEntity) {
         Customer customerEntity = getCustomerByUUID(uuid);
 

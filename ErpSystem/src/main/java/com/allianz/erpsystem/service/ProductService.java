@@ -16,19 +16,20 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
+    // Yeni bir ürün oluşturmak için kullanılan metod.
     public Product createProduct(Product product) {
         productRepository.save(product);
         return product;
     }
-
+    // Ürün listesini almak için kullanılan metod.
     public List<Product> getProductList() {
         return productRepository.findAll();
     }
-
+    // İsimle ürün aramak için kullanılan metod.
     public Product getProductByName(String name) {
         return productRepository.findAllByNameIgnoreCase(name);
     }
-
+    // UUID ile ürün aramak için kullanılan metod.
     public Product getProductByUUID(UUID uuid) {
         Optional<Product> productEntityOptional = productRepository.findByUuid(uuid);
 
@@ -38,7 +39,7 @@ public class ProductService {
             return null;
         }
     }
-
+    // UUID ile ürünü silmek için kullanılan metod.
     @Transactional
     public Boolean deleteProductByUUID(UUID uuid) {
         Product product = getProductByUUID(uuid);
@@ -50,7 +51,7 @@ public class ProductService {
             return false;
         }
     }
-
+    // UUID ile ürünü güncellemek için kullanılan metod.
     public Product updateProductByUUID(UUID uuid, Product product1) {
         Product product = getProductByUUID(uuid);
 

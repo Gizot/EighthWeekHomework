@@ -20,7 +20,7 @@ public class BillService {
     @Autowired
     BillRepository billRepository;
 
-
+    // Fatura oluşturmak için kullanılan metod.
     public Bill createBill(Bill bill, Long order_id) {
         Bill bill1 = bill;
 
@@ -29,11 +29,11 @@ public class BillService {
         billRepository.save(bill1);
         return bill;
     }
-
+    // Fatura listesini almak için kullanılan metod.
     public List<Bill> getInvoiceList() {
         return billRepository.findAll();
     }
-
+    // Siparişi faturaya ekleyen ve fatura tutarlarını hesaplayan metod.
     public void addOrderToBill(Bill bill, Long order_id) {
         BigDecimal kdvTotalPrice = BigDecimal.ZERO;
         BigDecimal normalTotalPrice = BigDecimal.ZERO;

@@ -14,14 +14,16 @@ public class BillController {
     @Autowired
     BillService billService;
 
-    //in order to list all invoices.
+    // Faturaların listesini döndüren HTTP GET isteği işleme metodu.
+
     @GetMapping("bill")
     public ResponseEntity<List<Bill>> getInvoiceList() {
 
         return new ResponseEntity<>(billService.getInvoiceList(), HttpStatus.OK);
     }
 
-    //save invoice to db.
+
+    // Yeni bir fatura oluşturmak için HTTP POST isteği işleme metodu.
     @PostMapping("bill/{order_id}")
     public ResponseEntity<Bill> createOrder(
             @RequestBody Bill bill, @PathVariable Long order_id) throws Exception {
