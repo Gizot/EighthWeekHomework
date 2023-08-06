@@ -1,11 +1,11 @@
 package com.allianz.erpsystem.entity;
 
+import com.allianz.erpsystem.dto.CategoryEnum;
 import com.allianz.erpsystem.util.utildb.BaseEntity;
-import jakarta.persistence.AttributeOverride;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.UUID;
 
 @Entity
 @Table
@@ -13,4 +13,19 @@ import lombok.Data;
 @AttributeOverride(name = "id", column = @Column(name = "product_id"))
 @Data
 public class Product extends BaseEntity {
+
+    @Column
+    private UUID uuid;
+    @Column
+    private String name;
+    @Column
+    private int stock;
+    @Column
+    private boolean hasVAT;
+    @Column
+    private CategoryEnum categoryEnum;
+    @Column
+    private double price;
+    @OneToOne(mappedBy = "product")
+    private OrderObj orderItem;
 }
