@@ -1,16 +1,23 @@
-package com.allianz.erpsystem.model;
+package com.allianz.erpsystem.dto;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class Product {
+@Getter
+@Setter
+public class ProductDto {
     private UUID uuid;
     private String name;
     private BigDecimal price;
     boolean hasDiscount;
     private int stockAmount;
-    private ArrayList <Order> orderList;
+    private ArrayList <OrderDto> orderDtoList;
     private CategoryEnum categoryEnum;
     private QuantityTypeEnum quantityTypeEnum;
+
+    public ProductDto(){this.uuid = UUID.randomUUID();}
 }
