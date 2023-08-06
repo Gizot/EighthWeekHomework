@@ -9,9 +9,8 @@ import lombok.Data;
 
 @Entity
 @Table
-@AttributeOverride(name = "uuid", column = @Column(name = "customer_uuid"))
-@AttributeOverride(name = "id", column = @Column(name = "customer_id"))
+@AttributeOverride(name = "uuid", column = @Column(name = "product_uuid"))
+@AttributeOverride(name = "id", column = @Column(name = "product_id"))
 @Data
-public class Customer extends BaseEntity {
-
+public class Product extends BaseEntity {
 }
