@@ -1,5 +1,6 @@
 package com.allianz.erpsystem.repository;
 
+import com.allianz.erpsystem.dto.OrderObjDto;
 import com.allianz.erpsystem.entity.OrderObj;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

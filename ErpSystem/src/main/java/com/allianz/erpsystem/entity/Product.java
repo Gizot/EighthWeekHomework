@@ -21,7 +21,7 @@ public class Product extends BaseEntity {
     @Column
     private int stock;
     @Column
-    private boolean hasVAT;
+    Boolean hasVAT;
     @Column
     private CategoryEnum categoryEnum;
     @Column
